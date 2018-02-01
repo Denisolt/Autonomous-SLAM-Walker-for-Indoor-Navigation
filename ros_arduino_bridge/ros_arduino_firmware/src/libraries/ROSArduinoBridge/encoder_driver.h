@@ -6,12 +6,12 @@
 #ifdef ARDUINO_ENC_COUNTER
   //below can be changed, but should be PORTD pins; 
   //otherwise additional changes in the code are required
-  #define leftCounter PD0  //DT pin on the KY-040 (yellow)
-  #define leftClk PD1  //CLK pin on the KY-040 (green)
+  //#define leftCounter PC3  //pin 2
+  //#define leftDirection PC2  //pin 3
   
   //below can be changed, but should be PORTC pins
-  #define rightCounter PD5  //pin A4 (yellow)
-  #define rightClk PD3  //pin A5 (green)
+  //#define rightCounter PC5  //pin A4
+  //#define rightDirection PC4   //pin A5
 #endif
    
 long readEncoder(int i);
