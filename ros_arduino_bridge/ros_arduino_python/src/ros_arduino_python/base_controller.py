@@ -24,7 +24,7 @@ import rospy
 import os
 import tf
 from math import sin, cos, pi
-from geometry_msgs.msg import Quaternion, Twist, Pose
+from geometry_msgs.msg import Quaternion, Twist, Pose, Point, Vector3
 from nav_msgs.msg import Odometry
 from tf.broadcaster import TransformBroadcaster
  
@@ -177,13 +177,10 @@ class BaseController:
             odom.header.frame_id = "odom"
             odom.child_frame_id = self.base_frame
             odom.header.stamp = now
-            odom.pose.pose.position.x = self.x
-            odom.pose.pose.position.y = self.y
-            odom.pose.pose.position.z = 0
-            odom.pose.pose.orientation = odom_quat
-            odom.twist.twist.linear.x = vx
-            odom.twist.twist.linear.y = vy
-            odom.twist.twist.angular.z = vth
+            odom.pose.pose = Pose(Point(self.x, self.y, 0.), Quaternion(*odom_quat))
+            # set the velocity
+            odom.child_frame_id = "base_link"
+            odom.twist.twist = Twist(Vector3(vx, vy, 0), Vector3(0, 0, vth))
 
             self.odomPub.publish(odom)
             
