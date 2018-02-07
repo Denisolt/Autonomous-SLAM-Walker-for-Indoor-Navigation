@@ -22,7 +22,7 @@
 import roslib; roslib.load_manifest('ros_arduino_python')
 import rospy
 import os
-
+import tf
 from math import sin, cos, pi
 from geometry_msgs.msg import Quaternion, Twist, Pose
 from nav_msgs.msg import Odometry
@@ -55,11 +55,13 @@ class BaseController:
         self.setup_pid(pid_params)
             
         # How many encoder ticks are there per meter?
-        self.ticks_per_meter = self.encoder_resolution * self.gear_reduction  / (self.wheel_diameter * pi)
+        self.ticks_per_meter = 44
         
         # What is the maximum acceleration we will tolerate when changing wheel speeds?
-        self.max_accel = self.accel_limit * self.ticks_per_meter / self.rate
-                
+        self.max_accel = self.accel_limit * self.ticks_per_meter / self.rate # max_accel can be 4.4
+         
+        #Distance per coounter tick/ 17 is the ticks per revolution
+        self.DistancePerCount=(pi*self.wheel_diameter)/(17)        
         # Track how often we get a bad encoder count (if any)
         self.bad_encoder_count = 0
                         
@@ -133,39 +135,39 @@ class BaseController:
             
             # Calculate odometry
             if self.enc_left == None:
-                dright = 0
-                dleft = 0
+                delta_right = 0
+                delta_left = 0
             else:
-                dright = (right_enc - self.enc_right) / self.ticks_per_meter
-                dleft = (left_enc - self.enc_left) / self.ticks_per_meter
+                delta_right = (right_enc - self.enc_right) / self.ticks_per_meter
+                delta_left = (left_enc - self.enc_left) / self.ticks_per_meter
 
             self.enc_right = right_enc
             self.enc_left = left_enc
-            
-            dxy_ave = (dright + dleft) / 2.0
-            dth = (dright - dleft) / self.wheel_track
-            vxy = dxy_ave / dt
-            vth = dth / dt
+            v_left= (delta_left*self.DistancePerCount)/dt
+            v_right= (delta_right*self.DistancePerCount)/dt
+
+            vx = ((v_right + v_left) / 2)
+            vy = 0;
+            vth = ((v_right - v_left)/self.wheel_track)*10;
+
+            delta_x = (vx * cos(self.th)) * dt;
+            delta_y = (vx * sin(self.th)) * dt;
+            delta_th = vth * dt;
                 
-            if (dxy_ave != 0):
-                dx = cos(dth) * dxy_ave
-                dy = -sin(dth) * dxy_ave
-                self.x += (cos(self.th) * dx - sin(self.th) * dy)
-                self.y += (sin(self.th) * dx + cos(self.th) * dy)
+            delta_x = (vx * cos(self.th)) * dt;
+            delta_y = (vx * sin(self.th)) * dt;
+            delta_th = vth * dt;
+
+            self.x += delta_x;
+            self.y += delta_y;
+            self.th += delta_th;
     
-            if (dth != 0):
-                self.th += dth 
-    
-            quaternion = Quaternion()
-            quaternion.x = 0.0 
-            quaternion.y = 0.0
-            quaternion.z = sin(self.th / 2.0)
-            quaternion.w = cos(self.th / 2.0)
+            odom_quat = tf.transformations.quaternion_from_euler(0, 0, self.th)
     
             # Create the odometry transform frame broadcaster.
             self.odomBroadcaster.sendTransform(
                 (self.x, self.y, 0), 
-                (quaternion.x, quaternion.y, quaternion.z, quaternion.w),
+                odom_quat,
                 rospy.Time.now(),
                 self.base_frame,
                 "odom"
@@ -178,9 +180,9 @@ class BaseController:
             odom.pose.pose.position.x = self.x
             odom.pose.pose.position.y = self.y
             odom.pose.pose.position.z = 0
-            odom.pose.pose.orientation = quaternion
-            odom.twist.twist.linear.x = vxy
-            odom.twist.twist.linear.y = 0
+            odom.pose.pose.orientation = odom_quat
+            odom.twist.twist.linear.x = vx
+            odom.twist.twist.linear.y = vy
             odom.twist.twist.angular.z = vth
 
             self.odomPub.publish(odom)
@@ -238,4 +240,3 @@ class BaseController:
             
         self.v_des_left = int(left * self.ticks_per_meter / self.arduino.PID_RATE)
         self.v_des_right = int(right * self.ticks_per_meter / self.arduino.PID_RATE)
-
