@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: /home/pkash/catkin_ws/src
-# Build directory: /home/pkash/catkin_ws/build
+# Source directory: /home/msdocs/MoonWalker/catkin_ws/src
+# Build directory: /home/msdocs/MoonWalker/catkin_ws/build
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

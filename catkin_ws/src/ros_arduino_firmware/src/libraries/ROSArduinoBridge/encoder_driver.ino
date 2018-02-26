@@ -38,12 +38,12 @@ void leftcount() {
   // If leftDirection is HIGH decrement the counter
   // otherwise increment it
   if (!digitalRead(A2)) {
-    leftPulses--;
+    leftPulses++;
     //rightPulses=leftPulses;
     //leftPulses=rightPulses;
   }
   else {
-    leftPulses++;
+    leftPulses--;
     //rightPulses=leftPulses;
     //leftPulses=rightPulses;
   }

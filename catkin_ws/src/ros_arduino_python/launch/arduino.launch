@@ -1,5 +1,5 @@
 <launch>
-    <node pkg="urg_node" type="urg_node" name="laser_scan">
+ <!--    <node pkg="urg_node" type="urg_node" name="laser_scan">
       <param name="port" value="/dev/ttyACM0"/>
       <param name="frame_id" value="map"/>
       <param name="calibrate_time" type="bool" value="true"/>
@@ -8,7 +8,7 @@
       <param name="max_ang" value="2.356194437"/>
       <param name="cluster" value="1"/>
       <remap from="scan" to="base_scan"/>
-  	</node>
+  	</node> -->
     
     <node name="arduino" pkg="ros_arduino_python" type="arduino_node.py" output="screen">
       <rosparam file="$(find ros_arduino_python)/config/my_arduino_params.yaml" command="load" />

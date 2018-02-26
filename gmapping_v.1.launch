@@ -16,17 +16,9 @@
   <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
     <rosparam>
       odom_frame: odom
-      angularUpdate: 0.05
-      maxUrange: 5.4
-      maxRange: 5.4
-      xmin: -20
-      ymin: -20
-      xmax: 20
-      ymax: 20
-      maxUrange: 6
-      linearUpdate: 0.1
       base_frame: base_link
     </rosparam>
     <remap from="scan" to="base_scan" />
   </node>
+
 </launch>

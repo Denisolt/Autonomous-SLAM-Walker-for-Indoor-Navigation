@@ -1,8 +1,8 @@
-# Install script for directory: /home/pkash/catkin_ws/src/ros_arduino_bridge
+# Install script for directory: /home/msdocs/MoonWalker/catkin_ws/src/ros_arduino_bridge
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  SET(CMAKE_INSTALL_PREFIX "/home/pkash/catkin_ws/install")
+  SET(CMAKE_INSTALL_PREFIX "/home/msdocs/MoonWalker/catkin_ws/install")
 ENDIF(NOT DEFINED CMAKE_INSTALL_PREFIX)
 STRING(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -33,6 +33,6 @@ IF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 ENDIF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ros_arduino_bridge" TYPE FILE FILES "/home/pkash/catkin_ws/src/ros_arduino_bridge/package.xml")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ros_arduino_bridge" TYPE FILE FILES "/home/msdocs/MoonWalker/catkin_ws/src/ros_arduino_bridge/package.xml")
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 

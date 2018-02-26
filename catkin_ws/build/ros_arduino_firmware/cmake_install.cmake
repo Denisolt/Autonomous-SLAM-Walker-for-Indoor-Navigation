@@ -1,8 +1,8 @@
-# Install script for directory: /home/pkash/catkin_ws/src/ros_arduino_firmware
+# Install script for directory: /home/msdocs/MoonWalker/catkin_ws/src/ros_arduino_firmware
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  SET(CMAKE_INSTALL_PREFIX "/home/pkash/catkin_ws/install")
+  SET(CMAKE_INSTALL_PREFIX "/home/msdocs/MoonWalker/catkin_ws/install")
 ENDIF(NOT DEFINED CMAKE_INSTALL_PREFIX)
 STRING(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -33,21 +33,21 @@ IF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 ENDIF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/pkash/catkin_ws/build/ros_arduino_firmware/catkin_generated/installspace/ros_arduino_firmware.pc")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/msdocs/MoonWalker/catkin_ws/build/ros_arduino_firmware/catkin_generated/installspace/ros_arduino_firmware.pc")
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ros_arduino_firmware/cmake" TYPE FILE FILES
-    "/home/pkash/catkin_ws/build/ros_arduino_firmware/catkin_generated/installspace/ros_arduino_firmwareConfig.cmake"
-    "/home/pkash/catkin_ws/build/ros_arduino_firmware/catkin_generated/installspace/ros_arduino_firmwareConfig-version.cmake"
+    "/home/msdocs/MoonWalker/catkin_ws/build/ros_arduino_firmware/catkin_generated/installspace/ros_arduino_firmwareConfig.cmake"
+    "/home/msdocs/MoonWalker/catkin_ws/build/ros_arduino_firmware/catkin_generated/installspace/ros_arduino_firmwareConfig-version.cmake"
     )
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ros_arduino_firmware" TYPE FILE FILES "/home/pkash/catkin_ws/src/ros_arduino_firmware/package.xml")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ros_arduino_firmware" TYPE FILE FILES "/home/msdocs/MoonWalker/catkin_ws/src/ros_arduino_firmware/package.xml")
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ros_arduino_firmware" TYPE DIRECTORY FILES "/home/pkash/catkin_ws/src/ros_arduino_firmware/src")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ros_arduino_firmware" TYPE DIRECTORY FILES "/home/msdocs/MoonWalker/catkin_ws/src/ros_arduino_firmware/src")
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 

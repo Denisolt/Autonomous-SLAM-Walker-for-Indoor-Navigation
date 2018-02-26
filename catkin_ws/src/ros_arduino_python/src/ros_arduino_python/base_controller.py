@@ -7,6 +7,7 @@
     
     Created for the Pi Robot Project: http://www.pirobot.org
     Copyright (c) 2010 Patrick Goebel.  All rights reserved.
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -22,9 +23,9 @@
 import roslib; roslib.load_manifest('ros_arduino_python')
 import rospy
 import os
-import tf
+
 from math import sin, cos, pi
-from geometry_msgs.msg import Quaternion, Twist, Pose, Point, Vector3
+from geometry_msgs.msg import Quaternion, Twist, Pose
 from nav_msgs.msg import Odometry
 from tf.broadcaster import TransformBroadcaster
  
@@ -55,13 +56,11 @@ class BaseController:
         self.setup_pid(pid_params)
             
         # How many encoder ticks are there per meter?
-        self.ticks_per_meter = 44
+        self.ticks_per_meter = self.encoder_resolution * self.gear_reduction  / (self.wheel_diameter * pi)
         
         # What is the maximum acceleration we will tolerate when changing wheel speeds?
-        self.max_accel = self.accel_limit * self.ticks_per_meter / self.rate # max_accel can be 4.4
-         
-        #Distance per coounter tick/ 17 is the ticks per revolution
-        self.DistancePerCount=(pi*self.wheel_diameter)/(17)        
+        self.max_accel = self.accel_limit * self.ticks_per_meter / self.rate
+                
         # Track how often we get a bad encoder count (if any)
         self.bad_encoder_count = 0
                         
@@ -124,7 +123,6 @@ class BaseController:
             # Read the encoders
             try:
                 left_enc, right_enc = self.arduino.get_encoder_counts()
-
             except:
                 self.bad_encoder_count += 1
                 rospy.logerr("Encoder exception count: " + str(self.bad_encoder_count))
@@ -136,52 +134,55 @@ class BaseController:
             
             # Calculate odometry
             if self.enc_left == None:
-                delta_right = 0
-                delta_left = 0
+                dright = 0
+                dleft = 0
             else:
-                delta_right = (right_enc - self.enc_right) / self.ticks_per_meter
-                delta_left = (left_enc - self.enc_left) / self.ticks_per_meter
+                dright = (right_enc - self.enc_right) / self.ticks_per_meter
+                dleft = (left_enc - self.enc_left) / self.ticks_per_meter
 
             self.enc_right = right_enc
             self.enc_left = left_enc
-            v_left= (delta_left*self.DistancePerCount)/dt
-            v_right= (delta_right*self.DistancePerCount)/dt
-
-            vx = ((v_right + v_left) / 2)
-            vy = 0;
-            vth = ((v_right - v_left)/self.wheel_track)*10;
-
-            delta_x = (vx * cos(self.th)) * dt;
-            delta_y = (vx * sin(self.th)) * dt;
-            delta_th = vth * dt;
-
-            delta_x = (vx * cos(self.th)) * dt;
-            delta_y = (vx * sin(self.th)) * dt;
-            delta_th = vth * dt;
-
-            self.x += abs(delta_x);
-            self.y += abs(delta_y);
-            self.th += abs(delta_th);
             
-            odom_quat = tf.transformations.quaternion_from_euler(0, 0, self.th)
-            
+            dxy_ave = (dright + dleft) / 2.0
+            dth = (dright - dleft) / self.wheel_track
+            vxy = dxy_ave / dt
+            vth = dth / dt
+                
+            if (dxy_ave != 0):
+                dx = cos(dth) * dxy_ave
+                dy = -sin(dth) * dxy_ave
+                self.x += (cos(self.th) * dx - sin(self.th) * dy)
+                self.y += (sin(self.th) * dx + cos(self.th) * dy)
+    
+            if (dth != 0):
+                self.th += dth 
+    
+            quaternion = Quaternion()
+            quaternion.x = 0.0 
+            quaternion.y = 0.0
+            quaternion.z = sin(self.th / 2.0)
+            quaternion.w = cos(self.th / 2.0)
+    
             # Create the odometry transform frame broadcaster.
             self.odomBroadcaster.sendTransform(
                 (self.x, self.y, 0), 
-                odom_quat,
+                (quaternion.x, quaternion.y, quaternion.z, quaternion.w),
                 rospy.Time.now(),
                 self.base_frame,
                 "odom"
                 )
-
+    
             odom = Odometry()
             odom.header.frame_id = "odom"
             odom.child_frame_id = self.base_frame
             odom.header.stamp = now
-            odom.pose.pose = Pose(Point(self.x, self.y, 0.), Quaternion(*odom_quat))
-            # set the velocity
-            odom.child_frame_id = "base_link"
-            odom.twist.twist = Twist(Vector3(vx, vy, 0), Vector3(0, 0, vth))
+            odom.pose.pose.position.x = self.x
+            odom.pose.pose.position.y = self.y
+            odom.pose.pose.position.z = 0
+            odom.pose.pose.orientation = quaternion
+            odom.twist.twist.linear.x = vxy
+            odom.twist.twist.linear.y = 0
+            odom.twist.twist.angular.z = vth
 
             self.odomPub.publish(odom)
             
@@ -238,3 +239,10 @@ class BaseController:
             
         self.v_des_left = int(left * self.ticks_per_meter / self.arduino.PID_RATE)
         self.v_des_right = int(right * self.ticks_per_meter / self.arduino.PID_RATE)
+        
+
+        
+
+    
+
+    
