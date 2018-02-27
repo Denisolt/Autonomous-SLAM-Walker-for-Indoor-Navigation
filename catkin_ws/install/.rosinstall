@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/msdocs/MoonWalker/catkin_ws/install/setup.sh
