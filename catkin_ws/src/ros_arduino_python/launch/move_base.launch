@@ -1,13 +1,17 @@
+
 <launch>
-<!-- Run the map server -->
-  <node name="map_server" pkg="map_server" type="map_server" args="$(find ros_arduino_python)/maps/mylaserdata.bag.pgm 0.05"/>
-<!--- Run AMCL -->
+	<master auto="start"/>
+    <!-- Run the map server -->
+    rosparam set use_sim_time true
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find ros_arduino_python)/maps/testmap.pgm 0.05"/>
+    <!--- Run AMCL -->
     <include file="$(find ros_arduino_python)/launch/amcl_diff.launch" />
-  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-    <rosparam file="$(find ros_arduino_python)/info/costmap_common_params.yaml" command="load" ns="global_costmap" />
-    <rosparam file="$(find ros_arduino_python)/info/costmap_common_params.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find ros_arduino_python)/info/local_costmap_params.yaml" command="load" />
-    <rosparam file="$(find ros_arduino_python)/info/global_costmap_params.yaml" command="load" />
-    <rosparam file="$(find ros_arduino_python)/info/base_local_planner_params.yaml" command="load" />
-  </node>
+
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+        <rosparam file="$(find ros_arduino_python)/info/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find ros_arduino_python)/info/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find ros_arduino_python)/info/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find ros_arduino_python)/info/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find ros_arduino_python)/info/base_local_planner_params.yaml" command="load" />
+    </node>
 </launch>
