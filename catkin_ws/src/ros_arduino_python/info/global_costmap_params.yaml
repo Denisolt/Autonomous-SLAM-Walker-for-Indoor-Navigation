@@ -3,4 +3,5 @@ global_costmap:
   robot_base_frame: base_link
   update_frequency: 5.0
   # static_map can be set to false if we aren't using an existing map or map server,
-  static_map: true
+  static_map: false
+  rolling_window: true

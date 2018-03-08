@@ -2,8 +2,7 @@
 <launch>
 	<master auto="start"/>
     <!-- Run the map server -->
-    rosparam set use_sim_time true
-    <node name="map_server" pkg="map_server" type="map_server" args="$(find ros_arduino_python)/maps/testmap.pgm 0.05"/>
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find ros_arduino_python)/maps/903b.pgm 0.05"/>
     <!--- Run AMCL -->
     <include file="$(find ros_arduino_python)/launch/amcl_diff.launch" />
 
