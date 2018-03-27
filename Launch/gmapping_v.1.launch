@@ -13,7 +13,10 @@
       <remap from="scan" to="base_scan"/>
   </node> 
 
-  <node pkg="tf" type="static_transform_publisher" name="base_link_to_base_laser_link" args="0.38 0 0.34 0.0 0.0 0 /base_link /laser_scan 100"/>
+  <!-- start ros_arduino_bridge driver -->
+  <include file="$(find ros_arduino_python)/launch/arduino_gmapping.launch" />
+
+  <node pkg="tf" type="static_transform_publisher" name="base_link_to_base_laser_link" args="0.58 0 0.14 0.0 0.0 0 /base_link /laser_scan 100"/>
   
   <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
     <rosparam>
