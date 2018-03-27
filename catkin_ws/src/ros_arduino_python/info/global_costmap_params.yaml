@@ -1,7 +1,9 @@
-global_costmap:
-  global_frame: /map
+#global_costmap:
+  global_frame: odom
   robot_base_frame: base_link
-  update_frequency: 5.0
-  # static_map can be set to false if we aren't using an existing map or map server,
-  static_map: false
-  rolling_window: true
+  update_frequency: 1.0
+  publish_frequency: 1.0
+  resolution: 0.05
+  static_map: true
+  width: 10.0
+  height: 10.0
