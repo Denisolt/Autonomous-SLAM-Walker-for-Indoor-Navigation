@@ -3,6 +3,7 @@
   <!-- Map server -->
   <arg name="map_file" default="$(find ros_arduino_python)/maps/903b_v2.yaml"/>
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
   <!-- Launch urg node for laser -->
   <node pkg="urg_node" type="urg_node" name="laser_scan">
     <param name="port" value="/dev/ttyACM0"/>
@@ -14,19 +15,21 @@
     <param name="cluster" value="1"/>
     <remap from="scan" to="base_scan"/>
   </node> 
+  
   <!-- Transform for laser offset -->
   <node pkg="tf" type="static_transform_publisher" name="base_link_to_base_laser_link" args="0.58 0 0.14 0.0 0.0 0 /base_link /laser_scan 100"/>
   <!-- Place map frame at odometry frame -->
-  <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 map odom 100"/>
-
+<!--   <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 map odom 100"/>
+ -->
   <!-- Localization -->
   <node pkg="amcl" type="amcl" name="amcl" output="screen">
     <remap from="scan" to="base_scan"/>
     <param name="odom_frame_id" value="odom"/>
-    <param name="odom_model_type" value="diff-corrected"/>
+    <param name="odom_model_type" value="diff"/>
     <param name="base_frame_id" value="base_link"/>
-    <param name="update_min_d" value="0.5"/>
-    <param name="update_min_a" value="1.0"/>
+    <param name="laser_max_range" value="5.0"/>
+    <param name="laser_min_range" value="0.3"/>
+    <remap from="scan" to="base_scan"/>
   </node>
   <!--include file="$(find amcl)/examples/amcl_omni.launch"/-->
 
@@ -37,11 +40,6 @@
     <rosparam file="$(find ros_arduino_python)/info/local_costmap_params.yaml" command="load" />
     <rosparam file="$(find ros_arduino_python)/info/global_costmap_params.yaml" command="load" />
     <rosparam file="$(find ros_arduino_python)/info/base_local_planner_params.yaml" command="load" />
-    
-    <remap from="cmd_vel" to="cmd_vel"/>
-    <remap from="odom" to="odom"/>
-    <remap from="scan" to="base_scan"/>
-<!--     <param name="move_base/DWAPlannerROS/yaw_goal_tolerance" value="1.0"/>
-    <param name="move_base/DWAPlannerROS/xy_goal_tolerance" value="1.0"/> -->
+    <param name="controller_frequency" value="10.0" />
   </node>
 </launch>
