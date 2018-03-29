@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
   <!-- Map server -->
-  <arg name="map_file" default="$(find ros_arduino_python)/maps/9_floor.yaml"/>
+  <arg name="map_file" default="$(find ros_arduino_python)/maps/8_floor.yaml"/>
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
 
   <!-- Launch urg node for laser -->
@@ -29,6 +29,8 @@
     <param name="base_frame_id" value="base_link"/>
     <param name="laser_max_range" value="5.0"/>
     <param name="laser_min_range" value="0.3"/>
+    <param name="update_min_d" value="-0.2"/>
+    <param name="update_min_a" value="-0.5"/>
     <remap from="scan" to="base_scan"/>
   </node>
 
