@@ -271,7 +271,7 @@ class Arduino:
             return None
         else:
             if self.motors_reversed:
-                values[0], values[1] = values[0], values[1]
+                values[0], values[1] = -values[0], -values[1]
             return values
 
     def reset_encoders(self):
