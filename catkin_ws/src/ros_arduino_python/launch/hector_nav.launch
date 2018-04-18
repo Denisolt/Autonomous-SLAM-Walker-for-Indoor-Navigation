@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Launch urg node for laser -->
+  <node pkg="urg_node" type="urg_node" name="laser_scan">
+    <param name="port" value="/dev/ttyACM0"/>
+    <param name="frame_id" value="laser_scan"/>
+    <param name="calibrate_time" type="bool" value="true"/>
+    <param name="intensity" type="bool" value="false"/>
+    <param name="min_ang" value="-2.356194437"/> 
+    <param name="max_ang" value="2.356194437"/>
+    <param name="cluster" value="1"/>
+    <remap from="scan" to="base_scan"/>
+  </node> 
+  
+  <!-- Transform for laser offset -->
+  <node pkg="tf" type="static_transform_publisher" name="base_link_to_base_laser_link" args="0.58 0 0.14 0.0 0.0 0 /base_link /laser_scan 50"/>
+
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find ros_arduino_python)/rviz_config/navigation_gmapping.rviz"/>
+
+  <!-- Move base -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <rosparam file="$(find ros_arduino_python)/info/gmapping_params/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find ros_arduino_python)/info/gmapping_params/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find ros_arduino_python)/info/gmapping_params/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find ros_arduino_python)/info/gmapping_params/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find ros_arduino_python)/info/gmapping_params/base_local_planner_params.yaml" command="load" />
+    <param name="controller_frequency" value="20.0" />
+<!--     <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS"/>
+    <param name="base_global_planner" value="navfn/NavfnROS"/>     -->  
+  </node>
+  
+  <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping" output="screen">
+    <!-- Frame names -->
+    <param name="map_frame" value="map" />
+    <param name="base_frame" value="base_link" />
+    <param name="odom_frame" value="odom" />
+    
+    <!-- Tf use -->
+    <param name="use_tf_scan_transformation" value="true"/>
+    <param name="use_tf_pose_start_estimate" value="false"/>
+    <param name="pub_map_odom_transform" value="true"/>
+    
+    <!-- Map size / start point -->
+    <param name="map_resolution" value="0.050"/>
+    <param name="map_size" value="2048"/>
+    <param name="map_start_x" value="0.5"/>
+    <param name="map_start_y" value="0.5" />
+    <param name="map_multi_res_levels" value="2" />
+    
+    <!-- Map update parameters -->
+    <param name="update_factor_free" value="0.4"/>
+    <param name="update_factor_occupied" value="0.9" />    
+    <param name="map_update_distance_thresh" value="0.4"/>
+    <param name="map_update_angle_thresh" value="0.06" />
+    <param name="laser_z_min_value" value = "-1.0" />
+    <param name="laser_z_max_value" value = "1.0" />
+    
+    <!-- Advertising config --> 
+    <param name="advertise_map_service" value="true"/>
+    <param name="scan_subscriber_queue_size" value="5"/>
+    <param name="scan_topic" value="base_scan"/>
+    
+    <!-- Debug parameters -->
+    <!--
+      <param name="output_timing" value="false"/>
+      <param name="pub_drawings" value="true"/>
+      <param name="pub_debug_output" value="true"/>
+    -->
+    <param name="tf_map_scanmatch_transform_frame_name" value="scanmatcher_frame" />
+  </node>
+    
+  <!--<node pkg="tf" type="static_transform_publisher" name="map_nav_broadcaster" args="0 0 0 0 0 0 map nav 100"/>-->
+</launch>
