@@ -9,6 +9,12 @@ from move_base_msgs.msg import *
 
 def simple_move():
 
+    initial_pose = Pose()
+    pose.position.x = 0.0
+    pose.position.y = 0.0
+    pose.orientation.z = 0.0
+    pose.orientation.w = 0.0
+
     rospy.init_node('simple_move')
 
     #Simple Action Client
@@ -19,11 +25,11 @@ def simple_move():
 
 
     #set goal
-    goal.target_pose.pose.position.x = sys.argv[0]
-    goal.target_pose.pose.position.y = sys.argv[1]
+    goal.target_pose.pose.position.x = 1
+    goal.target_pose.pose.position.y = 0
 
-    goal.target_pose.pose.orientation.z = sys.argv[2]
-    goal.target_pose.pose.orientation.w = sys.argv[3]
+    goal.target_pose.pose.orientation.z = 0
+    goal.target_pose.pose.orientation.w = 1
     
     goal.target_pose.header.frame_id = 'first_move'
     goal.target_pose.header.stamp = rospy.Time.now()

@@ -12,8 +12,8 @@ import datetime
 
 def collecter(msg):
 	df = pd.DataFrame.from_csv("~/catkin_ws/data/"+str(name)+".csv")
-	df2 = pd.DataFrame({'time':[datetime.datetime.now()], 'pos-x':[msg.pose.pose.position.x], 'pos-y': [msg.pose.pose.position.y], 'pos-z':[msg.pose.pose.position.z],
-		'ori-x':[msg.pose.pose.orientation.x],'ori-y':[msg.pose.pose.orientation.y],'ori-z':[msg.pose.pose.orientation.z],'ori-w':[msg.pose.pose.orientation.w]})
+	df2 = pd.DataFrame({'time':[datetime.datetime.now()], 'pos-x':[format(msg.pose.pose.position.x, '.6f')], 'pos-y': [format(msg.pose.pose.position.y, '.6f')], 'pos-z':[[format(msg.pose.pose.position.z, '.6f')]],
+		'ori-x':[format(msg.pose.pose.orientation.x, '.6f')],'ori-y':[format(msg.pose.pose.orientation.y, '.6f')],'ori-z':[format(msg.pose.pose.orientation.z, '.6f')],'ori-w':[format(msg.pose.pose.orientation.w, '.6f')]})
 	new = pd.concat([df,df2])
 	new.to_csv("~/catkin_ws/data/"+str(name)+".csv", header=True, columns=['time','pos-x','pos-y','pos-z','ori-x','ori-y','ori-z', 'ori-w'])
 
