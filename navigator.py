@@ -6,15 +6,17 @@ import actionlib
 import sys
 #move_base_msgs
 from move_base_msgs.msg import *
+from nav_msgs.msg import Odometry
+
+def reset(msg):
+    msg.pose.pose.position.x = 0.0
+    msg.pose.pose.position.y = 0.0
+    msg.pose.pose.orientation.z = 0.0
+    msg.pose.pose.orientation.w = 0.0
+    print("reset the pose values")
 
 def simple_move():
-
-    initial_pose = Pose()
-    pose.position.x = 0.0
-    pose.position.y = 0.0
-    pose.orientation.z = 0.0
-    pose.orientation.w = 0.0
-
+    
     rospy.init_node('simple_move')
 
     #Simple Action Client
@@ -49,6 +51,8 @@ def simple_move():
 
 if __name__ == '__main__':
     try:
+        rospy.init_node('reset_odometry')
+        odom_sub = rospy.Subscriber('/odom', Odometry, reset)
         simple_move()
     except rospy.ROSInterruptException:
         print "Keyboard Interrupt"
