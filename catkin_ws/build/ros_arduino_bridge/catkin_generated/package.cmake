@@ -10,4 +10,7 @@ set(ros_arduino_bridge_EXEC_DEPENDS "ros_arduino_firmware" "ros_arduino_msgs" "r
 set(ros_arduino_bridge_RUN_DEPENDS "ros_arduino_firmware" "ros_arduino_msgs" "ros_arduino_python")
 set(ros_arduino_bridge_TEST_DEPENDS )
 set(ros_arduino_bridge_DOC_DEPENDS )
+set(ros_arduino_bridge_URL_WEBSITE "http://ros.org/wiki/ros_arduino_bridge")
+set(ros_arduino_bridge_URL_BUGTRACKER "")
+set(ros_arduino_bridge_URL_REPOSITORY "")
 set(ros_arduino_bridge_DEPRECATED "")

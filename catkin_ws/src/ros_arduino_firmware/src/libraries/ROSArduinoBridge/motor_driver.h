@@ -2,7 +2,7 @@
    Motor driver function definitions - by James Nugen
    *************************************************************/
 
-#ifdef POLOLU_VNH5019
+#ifdef L298_MOTOR_DRIVER
   #define RIGHT_MOTOR_BACKWARD 5
   #define LEFT_MOTOR_BACKWARD  6
   #define RIGHT_MOTOR_FORWARD  9

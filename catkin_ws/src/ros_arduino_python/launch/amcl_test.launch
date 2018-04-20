@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
   <!-- Map server -->
-  <arg name="map_file" default="$(find ros_arduino_python)/maps/903_v3.yaml"/>
+  <arg name="map_file" default="/home/walker/paper/8_floor_base.yaml"/>
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
 
   <!-- Launch urg node for laser -->
@@ -13,34 +13,31 @@
     <param name="min_ang" value="-2.356194437"/> 
     <param name="max_ang" value="2.356194437"/>
     <param name="cluster" value="1"/>
-    <remap from="scan" to="base_scan"/>
   </node> 
   
   <!-- Transform for laser offset -->
-  <node pkg="tf" type="static_transform_publisher" name="base_link_to_base_laser_link" args="0.58 0 0.14 0.0 0.0 0 /base_link /laser_scan 100"/>
+  <node pkg="tf" type="static_transform_publisher" name="base_link_to_base_laser_link" args="0.58 0 0.14 0.0 0.0 0 /base_link /laser_scan 200"/>
   <!-- Place map frame at odometry frame -->
 <!--   <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 map odom 100"/>
  -->
   <!-- Localization -->
   <node pkg="amcl" type="amcl" name="amcl" output="screen">
-    <remap from="scan" to="base_scan"/>
+    <param name="global_frame_id" value="map"/>
     <param name="odom_frame_id" value="odom"/>
     <param name="odom_model_type" value="diff"/>
     <param name="base_frame_id" value="base_link"/>
-    <param name="laser_max_range" value="5.0"/>
-    <param name="laser_min_range" value="0.3"/>
-    <param name="update_min_d" value="-0.2"/>
-    <param name="update_min_a" value="-0.5"/>
-    <remap from="scan" to="base_scan"/>
+    <param name="update_min_d" value="-0.1"/>
+    <param name="update_min_a" value="-0.262"/>
   </node>
-
+  <!-- RVIZ launch with config file -->
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find ros_arduino_python)/rviz_config/navigation_amcl.rviz"/>
   <!-- Move base -->
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-    <rosparam file="$(find ros_arduino_python)/info/costmap_common_params.yaml" command="load" ns="global_costmap" />
-    <rosparam file="$(find ros_arduino_python)/info/costmap_common_params.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find ros_arduino_python)/info/local_costmap_params.yaml" command="load" />
-    <rosparam file="$(find ros_arduino_python)/info/global_costmap_params.yaml" command="load" />
-    <rosparam file="$(find ros_arduino_python)/info/base_local_planner_params.yaml" command="load" />
-    <param name="controller_frequency" value="5.0" />
+    <rosparam file="$(find ros_arduino_python)/info/amcl_param/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find ros_arduino_python)/info/amcl_param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find ros_arduino_python)/info/amcl_param/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find ros_arduino_python)/info/amcl_param/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find ros_arduino_python)/info/amcl_param/base_local_planner_params.yaml" command="load" />
+    <param name="controller_frequency" value="5.0" />    
   </node>
 </launch>

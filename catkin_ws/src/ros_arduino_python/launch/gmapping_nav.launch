@@ -13,7 +13,7 @@
   </node> 
   
   <!-- Transform for laser offset -->
-  <node pkg="tf" type="static_transform_publisher" name="base_link_to_base_laser_link" args="0.58 0 0.14 0.0 0.0 0 /base_link /laser_scan 100"/>
+  <node pkg="tf" type="static_transform_publisher" name="base_link_to_base_laser_link" args="0.58 0 0.14 0.0 0.0 0 /base_link /laser_scan 200"/>
   <!-- Place map frame at odometry frame -->
 <!--   <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 map odom 100"/>
  -->
@@ -28,7 +28,7 @@
       particles: 80
       maxUrange: 5.4
       maxRange: 5.4
-      linearUpdate: 0.1
+      linearUpdate: 0.2
       angularUpdate: 0.1
       temporalUpdate: -1.0
       ymax: 20
@@ -39,13 +39,15 @@
     <remap from="scan" to="base_scan" />
   </node>
 
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find ros_arduino_python)/rviz_config/navigation_gmapping.rviz"/>
+
   <!-- Move base -->
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-    <rosparam file="$(find ros_arduino_python)/info/costmap_common_params.yaml" command="load" ns="global_costmap" />
-    <rosparam file="$(find ros_arduino_python)/info/costmap_common_params.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find ros_arduino_python)/info/local_costmap_params.yaml" command="load" />
-    <rosparam file="$(find ros_arduino_python)/info/global_costmap_params.yaml" command="load" />
-    <rosparam file="$(find ros_arduino_python)/info/base_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find ros_arduino_python)/info/gmapping_params/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find ros_arduino_python)/info/gmapping_params/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find ros_arduino_python)/info/gmapping_params/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find ros_arduino_python)/info/gmapping_params/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find ros_arduino_python)/info/gmapping_params/base_local_planner_params.yaml" command="load" />
     <param name="controller_frequency" value="5.0" />
 <!--     <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS"/>
     <param name="base_global_planner" value="navfn/NavfnROS"/>     -->  

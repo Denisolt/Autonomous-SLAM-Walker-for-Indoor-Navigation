@@ -1,20 +1,20 @@
-FILE(REMOVE_RECURSE
+file(REMOVE_RECURSE
   "CMakeFiles/ros_arduino_msgs_generate_messages_cpp"
-  "/home/msdocs/MoonWalker/catkin_ws/devel/include/ros_arduino_msgs/ArduinoConstants.h"
-  "/home/msdocs/MoonWalker/catkin_ws/devel/include/ros_arduino_msgs/Analog.h"
-  "/home/msdocs/MoonWalker/catkin_ws/devel/include/ros_arduino_msgs/AnalogFloat.h"
-  "/home/msdocs/MoonWalker/catkin_ws/devel/include/ros_arduino_msgs/Digital.h"
-  "/home/msdocs/MoonWalker/catkin_ws/devel/include/ros_arduino_msgs/SensorState.h"
-  "/home/msdocs/MoonWalker/catkin_ws/devel/include/ros_arduino_msgs/AnalogRead.h"
-  "/home/msdocs/MoonWalker/catkin_ws/devel/include/ros_arduino_msgs/DigitalRead.h"
-  "/home/msdocs/MoonWalker/catkin_ws/devel/include/ros_arduino_msgs/ServoRead.h"
-  "/home/msdocs/MoonWalker/catkin_ws/devel/include/ros_arduino_msgs/DigitalSetDirection.h"
-  "/home/msdocs/MoonWalker/catkin_ws/devel/include/ros_arduino_msgs/ServoWrite.h"
-  "/home/msdocs/MoonWalker/catkin_ws/devel/include/ros_arduino_msgs/DigitalWrite.h"
-  "/home/msdocs/MoonWalker/catkin_ws/devel/include/ros_arduino_msgs/AnalogWrite.h"
+  "/home/walker/catkin_ws/devel/include/ros_arduino_msgs/AnalogFloat.h"
+  "/home/walker/catkin_ws/devel/include/ros_arduino_msgs/SensorState.h"
+  "/home/walker/catkin_ws/devel/include/ros_arduino_msgs/Digital.h"
+  "/home/walker/catkin_ws/devel/include/ros_arduino_msgs/ArduinoConstants.h"
+  "/home/walker/catkin_ws/devel/include/ros_arduino_msgs/Analog.h"
+  "/home/walker/catkin_ws/devel/include/ros_arduino_msgs/ServoRead.h"
+  "/home/walker/catkin_ws/devel/include/ros_arduino_msgs/AnalogRead.h"
+  "/home/walker/catkin_ws/devel/include/ros_arduino_msgs/DigitalWrite.h"
+  "/home/walker/catkin_ws/devel/include/ros_arduino_msgs/DigitalRead.h"
+  "/home/walker/catkin_ws/devel/include/ros_arduino_msgs/AnalogWrite.h"
+  "/home/walker/catkin_ws/devel/include/ros_arduino_msgs/DigitalSetDirection.h"
+  "/home/walker/catkin_ws/devel/include/ros_arduino_msgs/ServoWrite.h"
 )
 
 # Per-language clean rules from dependency scanning.
-FOREACH(lang)
-  INCLUDE(CMakeFiles/ros_arduino_msgs_generate_messages_cpp.dir/cmake_clean_${lang}.cmake OPTIONAL)
-ENDFOREACH(lang)
+foreach(lang )
+  include(CMakeFiles/ros_arduino_msgs_generate_messages_cpp.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

@@ -1,8 +1,8 @@
-prefix=/home/msdocs/MoonWalker/catkin_ws/devel
+prefix=/home/walker/catkin_ws/devel
 
 Name: ros_arduino_firmware
 Description: Description of ros_arduino_firmware
 Version: 0.2.0
 Cflags: 
-Libs: -L/home/msdocs/MoonWalker/catkin_ws/devel/lib 
+Libs: -L/home/walker/catkin_ws/devel/lib 
 Requires: 

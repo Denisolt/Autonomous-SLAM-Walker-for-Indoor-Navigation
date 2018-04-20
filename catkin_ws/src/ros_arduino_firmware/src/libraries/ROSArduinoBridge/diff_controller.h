@@ -37,7 +37,6 @@ int Kp = 20;
 int Kd = 12;
 int Ki = 0;
 int Ko = 50;
-
 unsigned char moving = 0; // is the base in motion?
 
 /*

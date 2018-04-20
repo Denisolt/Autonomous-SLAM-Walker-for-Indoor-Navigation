@@ -1,5 +1,5 @@
 # generated from catkin/cmake/template/order_packages.context.py.in
-source_root_dir = "/home/msdocs/MoonWalker/catkin_ws/src"
+source_root_dir = "/home/walker/catkin_ws/src"
 whitelisted_packages = "".split(';') if "" != "" else []
 blacklisted_packages = "".split(';') if "" != "" else []
-underlay_workspaces = "/home/msdocs/MoonWalker/catkin_ws/devel;/opt/ros/indigo".split(';') if "/home/msdocs/MoonWalker/catkin_ws/devel;/opt/ros/indigo" != "" else []
+underlay_workspaces = "/home/walker/catkin_ws/devel;/opt/ros/kinetic".split(';') if "/home/walker/catkin_ws/devel;/opt/ros/kinetic" != "" else []

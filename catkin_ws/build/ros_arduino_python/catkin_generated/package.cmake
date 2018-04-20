@@ -10,4 +10,7 @@ set(ros_arduino_python_EXEC_DEPENDS "rospy" "std_msgs" "sensor_msgs" "geometry_m
 set(ros_arduino_python_RUN_DEPENDS "rospy" "std_msgs" "sensor_msgs" "geometry_msgs" "nav_msgs" "tf" "ros_arduino_msgs" "python-serial")
 set(ros_arduino_python_TEST_DEPENDS )
 set(ros_arduino_python_DOC_DEPENDS )
+set(ros_arduino_python_URL_WEBSITE "http://ros.org/wiki/ros_arduino_python")
+set(ros_arduino_python_URL_BUGTRACKER "")
+set(ros_arduino_python_URL_REPOSITORY "")
 set(ros_arduino_python_DEPRECATED "")

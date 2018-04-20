@@ -94,3 +94,6 @@ uint8 OUTPUT=1
       raise genpy.DeserializationError(e) #most likely buffer underfill
 
 _struct_I = genpy.struct_I
+def _get_struct_I():
+    global _struct_I
+    return _struct_I

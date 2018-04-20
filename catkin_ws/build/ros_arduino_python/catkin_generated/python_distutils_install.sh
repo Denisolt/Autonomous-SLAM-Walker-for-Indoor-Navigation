@@ -14,20 +14,20 @@ fi
 
 echo_and_run() { echo "+ $@" ; "$@" ; }
 
-echo_and_run cd "/home/msdocs/MoonWalker/catkin_ws/src/ros_arduino_python"
+echo_and_run cd "/home/walker/catkin_ws/src/ros_arduino_python"
 
-# snsure that Python install destination exists
-echo_and_run mkdir -p "$DESTDIR/home/msdocs/MoonWalker/catkin_ws/install/lib/python2.7/dist-packages"
+# ensure that Python install destination exists
+echo_and_run mkdir -p "$DESTDIR/home/walker/catkin_ws/install/lib/python2.7/dist-packages"
 
 # Note that PYTHONPATH is pulled from the environment to support installing
 # into one location when some dependencies were installed in another
 # location, #123.
 echo_and_run /usr/bin/env \
-    PYTHONPATH="/home/msdocs/MoonWalker/catkin_ws/install/lib/python2.7/dist-packages:/home/msdocs/MoonWalker/catkin_ws/build/lib/python2.7/dist-packages:$PYTHONPATH" \
-    CATKIN_BINARY_DIR="/home/msdocs/MoonWalker/catkin_ws/build" \
+    PYTHONPATH="/home/walker/catkin_ws/install/lib/python2.7/dist-packages:/home/walker/catkin_ws/build/lib/python2.7/dist-packages:$PYTHONPATH" \
+    CATKIN_BINARY_DIR="/home/walker/catkin_ws/build" \
     "/usr/bin/python" \
-    "/home/msdocs/MoonWalker/catkin_ws/src/ros_arduino_python/setup.py" \
-    build --build-base "/home/msdocs/MoonWalker/catkin_ws/build/ros_arduino_python" \
+    "/home/walker/catkin_ws/src/ros_arduino_python/setup.py" \
+    build --build-base "/home/walker/catkin_ws/build/ros_arduino_python" \
     install \
     $DESTDIR_ARG \
-    --install-layout=deb --prefix="/home/msdocs/MoonWalker/catkin_ws/install" --install-scripts="/home/msdocs/MoonWalker/catkin_ws/install/bin"
+    --install-layout=deb --prefix="/home/walker/catkin_ws/install" --install-scripts="/home/walker/catkin_ws/install/bin"
