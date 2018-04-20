@@ -39,7 +39,7 @@
 	enc_last <<=2; //shift previous state two places
 	enc_last |= (((PIND & (1 << 3)) >> 2) | ((PIND & (1 << 5)) >> 5)); //read the current state into lowest 2 bits
   
-  	left_enc_pos -= ENC_STATES[(enc_last & 0x0f)];
+  	left_enc_pos += ENC_STATES[(enc_last & 0x0f)];
   }
   
   /* Interrupt routine for RIGHT encoder, taking care of actual counting */
@@ -49,7 +49,7 @@
 	enc_last <<=2; //shift previous state two places
 	enc_last |= (PINC & (3 << 4)) >> 4; //read the current state into lowest 2 bits
   
-  	right_enc_pos -= ENC_STATES[(enc_last & 0x0f)];
+  	right_enc_pos += ENC_STATES[(enc_last & 0x0f)];
   }
   
   /* Wrap the encoder reading function */
