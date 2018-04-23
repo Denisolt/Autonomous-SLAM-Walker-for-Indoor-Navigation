@@ -3,4 +3,8 @@ global_costmap:
   robot_base_frame: base_link
   update_frequency: 5.0
   publish_frequency: 2.0
-  static_map: True
+  static_map: False
+  width: 40
+  height: 40
+  origin_x: -20
+  origin_y: -20

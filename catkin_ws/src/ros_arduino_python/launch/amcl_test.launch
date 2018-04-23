@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <launch>
   <!-- Map server -->
-  <arg name="map_file" default="/home/walker/paper/8_floor_base.yaml"/>
+  <!-- <arg name="map_file" default="$(find ros_arduino_python)/maps/9th_floor_amcltest.yaml"/>  -->
+  <arg name="map_file" default="$(find ros_arduino_python)/maps/903_v3.yaml"/>
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
 
   <!-- Launch urg node for laser -->
