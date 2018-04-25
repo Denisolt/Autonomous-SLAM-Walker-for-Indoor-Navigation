@@ -1,0 +1,15 @@
+#JSGF V1.0;
+
+/**
+ * JSGF Grammar for Turtle example
+ */
+
+grammar asr;
+
+public <rule> = <action> [<preposition>] [<objects>] [<preposition>] [<objects>];
+
+<action> = GO | THIS ;
+
+<objects> = THE LIVING ROOM | THE KITCHEN | THE BEDROOM;
+
+<preposition> = IS | TO;
