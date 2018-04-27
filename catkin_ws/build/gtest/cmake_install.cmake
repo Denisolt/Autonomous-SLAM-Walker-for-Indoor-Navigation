@@ -34,7 +34,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/walker/catkin_ws/build/gtest/gtest/cmake_install.cmake")
+  include("/home/walker/moonwalker/catkin_ws/build/gtest/gtest/cmake_install.cmake")
 
 endif()
 

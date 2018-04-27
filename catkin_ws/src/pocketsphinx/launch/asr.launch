@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <launch>
-
     <!--    Args with no default attribute are not optional    -->
     <arg name="input" default=":default"/>
     <arg name="hmm" value="$(find pocketsphinx)/info/hub4wsj_sc_8k"/>
@@ -24,5 +23,8 @@
     <!--    Node for publishing audio inputs    -->
     <node name="audio_control" pkg="pocketsphinx" type="send_audio.py" output="screen" >
         <param name="input" value="$(arg input)"/>
+    </node>
+
+    <node name="walker_controller" pkg="pocketsphinx" type="voice.py" output="screen" >
     </node>
 </launch>

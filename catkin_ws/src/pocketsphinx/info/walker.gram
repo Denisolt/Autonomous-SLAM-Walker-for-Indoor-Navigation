@@ -8,8 +8,8 @@ grammar asr;
 
 public <rule> = <action> [<preposition>] [<objects>] [<preposition>] [<objects>];
 
-<action> = GO | THIS ;
+<action> = GET | THIS ;
 
-<objects> = THE LIVING ROOM | THE KITCHEN | THE BEDROOM;
+<objects> = THE LIVING ROOM | THE KITCHEN | THE BEDROOM |THE BATH ROOM | THE DINING ROOM ;
 
 <preposition> = IS | TO;

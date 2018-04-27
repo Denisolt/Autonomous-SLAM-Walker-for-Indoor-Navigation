@@ -33,13 +33,13 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/walker/catkin_ws/build/pocketsphinx/catkin_generated/installspace/pocketsphinx.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/walker/moonwalker/catkin_ws/build/pocketsphinx/catkin_generated/installspace/pocketsphinx.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/pocketsphinx/cmake" TYPE FILE FILES
-    "/home/walker/catkin_ws/build/pocketsphinx/catkin_generated/installspace/pocketsphinxConfig.cmake"
-    "/home/walker/catkin_ws/build/pocketsphinx/catkin_generated/installspace/pocketsphinxConfig-version.cmake"
+    "/home/walker/moonwalker/catkin_ws/build/pocketsphinx/catkin_generated/installspace/pocketsphinxConfig.cmake"
+    "/home/walker/moonwalker/catkin_ws/build/pocketsphinx/catkin_generated/installspace/pocketsphinxConfig-version.cmake"
     )
 endif()
 

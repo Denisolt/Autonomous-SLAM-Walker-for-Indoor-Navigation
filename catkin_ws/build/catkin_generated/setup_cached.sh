@@ -7,4 +7,4 @@
 # new environment variables
 
 # modified environment variables
-export PWD="/home/walker/catkin_ws/build"
+export PWD="/home/walker/moonwalker/catkin_ws/build"

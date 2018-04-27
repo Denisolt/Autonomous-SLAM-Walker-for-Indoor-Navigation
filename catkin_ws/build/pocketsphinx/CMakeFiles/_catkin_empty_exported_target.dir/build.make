@@ -46,7 +46,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/walker/catkin_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/walker/catkin_ws/build
+CMAKE_BINARY_DIR = /home/walker/moonwalker/catkin_ws/build
 
 # Utility rule file for _catkin_empty_exported_target.
 
@@ -63,10 +63,10 @@ pocketsphinx/CMakeFiles/_catkin_empty_exported_target.dir/build: _catkin_empty_e
 .PHONY : pocketsphinx/CMakeFiles/_catkin_empty_exported_target.dir/build
 
 pocketsphinx/CMakeFiles/_catkin_empty_exported_target.dir/clean:
-	cd /home/walker/catkin_ws/build/pocketsphinx && $(CMAKE_COMMAND) -P CMakeFiles/_catkin_empty_exported_target.dir/cmake_clean.cmake
+	cd /home/walker/moonwalker/catkin_ws/build/pocketsphinx && $(CMAKE_COMMAND) -P CMakeFiles/_catkin_empty_exported_target.dir/cmake_clean.cmake
 .PHONY : pocketsphinx/CMakeFiles/_catkin_empty_exported_target.dir/clean
 
 pocketsphinx/CMakeFiles/_catkin_empty_exported_target.dir/depend:
-	cd /home/walker/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/walker/catkin_ws/src /home/walker/catkin_ws/src/pocketsphinx /home/walker/catkin_ws/build /home/walker/catkin_ws/build/pocketsphinx /home/walker/catkin_ws/build/pocketsphinx/CMakeFiles/_catkin_empty_exported_target.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/walker/moonwalker/catkin_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/walker/catkin_ws/src /home/walker/catkin_ws/src/pocketsphinx /home/walker/moonwalker/catkin_ws/build /home/walker/moonwalker/catkin_ws/build/pocketsphinx /home/walker/moonwalker/catkin_ws/build/pocketsphinx/CMakeFiles/_catkin_empty_exported_target.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : pocketsphinx/CMakeFiles/_catkin_empty_exported_target.dir/depend
 

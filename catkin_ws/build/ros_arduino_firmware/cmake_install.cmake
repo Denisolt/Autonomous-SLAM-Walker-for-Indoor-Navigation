@@ -33,13 +33,13 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/walker/catkin_ws/build/ros_arduino_firmware/catkin_generated/installspace/ros_arduino_firmware.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/walker/moonwalker/catkin_ws/build/ros_arduino_firmware/catkin_generated/installspace/ros_arduino_firmware.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ros_arduino_firmware/cmake" TYPE FILE FILES
-    "/home/walker/catkin_ws/build/ros_arduino_firmware/catkin_generated/installspace/ros_arduino_firmwareConfig.cmake"
-    "/home/walker/catkin_ws/build/ros_arduino_firmware/catkin_generated/installspace/ros_arduino_firmwareConfig-version.cmake"
+    "/home/walker/moonwalker/catkin_ws/build/ros_arduino_firmware/catkin_generated/installspace/ros_arduino_firmwareConfig.cmake"
+    "/home/walker/moonwalker/catkin_ws/build/ros_arduino_firmware/catkin_generated/installspace/ros_arduino_firmwareConfig-version.cmake"
     )
 endif()
 
