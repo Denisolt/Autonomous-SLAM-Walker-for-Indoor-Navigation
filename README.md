@@ -24,5 +24,5 @@ git clone https://github.com/NYIT-PD/MoonWalker.git
 <img src="https://github.com/NYIT-PD/MoonWalker/blob/master/images/software.png" width=450 >
 </p>
 
-Above are Hardware (left) and Software (right) diagrams attached above.
+Above are Hardware (left) and Software (right) diagrams.
 
