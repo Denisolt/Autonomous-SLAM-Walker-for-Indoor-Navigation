@@ -26,7 +26,3 @@ git clone https://github.com/NYIT-PD/MoonWalker.git
 
 Above are Hardware (left) and Software (right) diagrams attached above.
 
-For the complete set of instructions and requirements please refer to Documentation
-
-## Documentation:
-https://github.com/NYIT-PD/MoonWalker/wiki
