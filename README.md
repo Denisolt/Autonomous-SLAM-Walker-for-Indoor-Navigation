@@ -28,6 +28,7 @@ Above are Hardware (left) and Software (right) diagrams.
 
 ## Citation
 If you use the repo - then, please, cite the paper. This is a BibTex citation:
+```
 @inproceedings{kashyap2018autonomous,
   title={An Autonomous Simultaneous Localization and Mapping Walker for Indoor Navigation},
   author={Kashyap, Priyank and Saleh, Mahmoud and Shakhbulatov, Denisolt and Dong, Ziqian},
@@ -36,3 +37,4 @@ If you use the repo - then, please, cite the paper. This is a BibTex citation:
   year={2018},
   organization={IEEE}
 }
+```
